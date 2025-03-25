@@ -1,0 +1,30 @@
+Tensor creation rmd file
+Vidhaan Khare
+2025-03-25
+knitr::opts_chunk$set(echo = TRUE)
+
+###Libraries used - 
+library(torch)
+library(ggplot2) 
+
+
+#Creating a tensor with values from 1 to 12
+tensor <- torch_arange(1, 12)
+
+#This 1D tensor can be visualized as a bar plot or a line plot.
+
+
+#Converting the tensor to an R vector for plotting.
+tensor_values <- as.array(tensor)
+
+#Creating a dataframe for ggplot2.
+df <- data.frame(Index = 1:length(tensor_values), Value = tensor_values)
+
+#Plotting the tensor values as a line plot.
+ggplot(df, aes(x = Index, y = Value)) +
+  geom_line(color = "blue") +  # Line plot
+  geom_point(color = "red", size = 3) +  
+  labs(title = "Visualization of torch_arange(1, 12)",
+       x = "Index",
+       y = "Value") +
+  theme_minimal()
